@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Portfolio</title>
 </head>
 
@@ -79,7 +80,7 @@
     <div id="outer" style="">
         <div id="inner" style="width: 95%; margin: 0 auto;">
             <div class="row" style="margin: 0;" id="projects">
-                <div class="col-md-4 col-sm-6 space">
+                <div class="col-md-4 col-sm-6 space" data-aos="fade-up">
                     <div class="row">
                         <div class="col-md-11 col-sm-11 mx-auto rounded border" >
                             <h3 class="head" >Recipe Haven</h3>
@@ -98,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 space">
+                <div class="col-md-4 col-sm-6 space" data-aos="fade-up">
                     <div class="row">
                         <div class="col-md-11 col-sm-11 mx-auto rounded border" >
                             <h3 class="color head">Rock-Paper-Scissors</h3>
@@ -116,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 space">
+                <div class="col-md-4 col-sm-6 space" data-aos="fade-up">
                     <div class="row">
                         <div class="col-md-11 mx-auto col-sm-11 rounded border">
                             <h3 class="color head">Task List</h3>
@@ -132,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 space">
+                <div class="col-md-4 col-sm-6 space" data-aos="fade-up">
                     <div class="row">
                         <div class="col-md-11 mx-auto rounded col-sm-11 border">
                             <h3 class="color head">SPA website</h3>
@@ -149,7 +150,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 space">
+                <div class="col-md-4 col-sm-6 space" data-aos="fade-up">
                     <div class="row">
                         <div class="col-md-11 mx-auto rounded col-sm-11 border">
                             <h3 class="color head">Plebian</h3>
@@ -165,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 space ">
+                <div class="col-md-4 col-sm-6 space " data-aos="fade-up">
                     <div class="row">
                         <div class="col-md-11 mx-auto rounded col-sm-11 border">
                             <h3 class="color head">SPACE X</h3>
@@ -380,9 +381,54 @@
             font-size: 90%;
             padding: 4px 8px;
         }
+
+        
     }
 </style>
+
 <script src="app.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+    // Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+
+
+  </script>
 
 
 </html>
